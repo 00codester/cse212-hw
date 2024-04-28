@@ -1,3 +1,5 @@
+using System.Xml.XPath;
+
 public static class ArraySelector
 {
     public static void Run()
@@ -11,6 +13,21 @@ public static class ArraySelector
 
     private static int[] ListSelector(int[] list1, int[] list2, int[] select)
     {
-        return new int[0];
+        //return new int[0];
+        int l1loc = 0;
+        int l2loc = 0;
+        var result = new List<int>();
+
+        for(int i = 0; i < select.Length; i++){
+            if (select[i] == 1){
+                result.Add(list1[l1loc]);
+                l1loc += 1;
+            } else {
+                result.Add(list2[l2loc]);
+                l2loc += 1;
+            }
+        }
+        
+        return result.ToArray();
     }
 }

@@ -1,3 +1,7 @@
+using System.Linq.Expressions;
+using System.Reflection.PortableExecutable;
+using System.Xml;
+
 public static class ArraysTester {
     /// <summary>
     /// Entry point for the tests
@@ -25,7 +29,11 @@ public static class ArraysTester {
         numbers = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
         RotateListRight(numbers, 9);
         Console.WriteLine($"<List>{{{string.Join(',', numbers)}}}"); // <List>{1, 2, 3, 4, 5, 6, 7, 8, 9}
+        //testing for a greater shift amount than list length.
+        RotateListRight(numbers, 10);
+        Console.WriteLine($"<List>{{{string.Join(',', numbers)}}}"); // <List>{9, 1, 2, 3, 4, 5, 6, 7, 8}
     }
+
     /// <summary>
     /// This function will produce a list of size 'length' starting with 'number' followed by multiples of 'number'.  For 
     /// example, MultiplesOf(7, 5) will result in: {7, 14, 21, 28, 35}.  Assume that length is a positive
@@ -39,7 +47,21 @@ public static class ArraysTester {
         // step by step before you write the code. The plan should be clear enough that it could
         // be implemented by another person.
 
-        return new double[0]; // replace this return statement with your own
+        //need a result list variable that will hold all the multiples
+        List<double> results = new List<double>();
+        //need a var to keep track of what number we're at to add number to
+        var totnumber = number;
+
+        //need a for loop that will iterate through number length amount of times
+        //adding the number to itself and into the result array and stopping once it reaches length
+
+        for(int i = 1; i <= length; i++){
+            results.Add(totnumber);
+            totnumber += number;
+
+        }
+
+        return results.ToArray(); // replace this return statement with your own
     }
     
     /// <summary>
@@ -56,6 +78,46 @@ public static class ArraysTester {
         // Remember: Using comments in your program, write down your process for solving this problem
         // step by step before you write the code. The plan should be clear enough that it could
         // be implemented by another person.
+
+        // checks if the amount of shifting to the right is greater than the amount of numbers in the list, and adjusts.
+        if(amount > data.Count){
+            amount = amount % data.Count;
+        }
+        //need a new result list variable to add the new data to
+        List<int> oldData = new List<int>(data);
+        List<int> newResult = new List<int>();
+        int count = data.Count;
+        int idex = count - amount;
+        //Console.WriteLine(count);
+        //Console.WriteLine(idex);
+
+        //going to use GetRange from count - amount to count, add it to the new result list, then remove that same range from the data list, then add the remaining data list into the new result list.
+
+        //this is the list of numbers in the range that it needs to move over to the right
+        List<int> theRange = new List<int>(data.GetRange(idex, amount));
+
+        //puts the numbers from theRange into a new result set
+        foreach(int number in theRange){
+            newResult.Add(number);
+        }
+
+        //removes theRange numbers from a copy of the list leaving only the numbers we still need inside
+        oldData.RemoveRange(idex, amount);
+
+        //adds the remaining needed numbers from the list to our result list
+        foreach(int number in oldData){
+            newResult.Add(number);
+        }
+
+        //clears the original list of numbers
+        data.RemoveRange(0, count);
+        // adds the number back into the original list in proper oder based on how far they should have moved over.
+        data.AddRange(newResult);
+
+
+
+        //took several tries to figure out how to edit the actual data variable, couldn't just say data = newResult;... This is definitely not the most efficient way to do it... but it works.
+        
 
     }
 }
