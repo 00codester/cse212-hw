@@ -47,12 +47,15 @@ public static class ArraysTester {
         // step by step before you write the code. The plan should be clear enough that it could
         // be implemented by another person.
 
-        //need a result list variable that will hold all the multiples
+        //Plan: need a result list to hold all the multiples, a variable keeping track of the multiplication total.
+        // need a for loop that iterates through number the length amount of times. adding number to itself and storing that in multiplication total variable.
+
+        //result list variable that will hold all the multiples
         List<double> results = new List<double>();
-        //need a var to keep track of what number we're at to add number to
+        //keep track of what number we're at to add number to
         var totnumber = number;
 
-        //need a for loop that will iterate through number length amount of times
+        //for loop that will iterate through number length amount of times
         //adding the number to itself and into the result array and stopping once it reaches length
 
         for(int i = 1; i <= length; i++){
@@ -79,10 +82,13 @@ public static class ArraysTester {
         // step by step before you write the code. The plan should be clear enough that it could
         // be implemented by another person.
 
+        //needed several more variables, lists, and checks to make program work after I started trying to follow my plan...
+
         // checks if the amount of shifting to the right is greater than the amount of numbers in the list, and adjusts.
         if(amount > data.Count){
             amount = amount % data.Count;
         }
+
         //need a new result list variable to add the new data to
         List<int> oldData = new List<int>(data);
         List<int> newResult = new List<int>();
@@ -91,7 +97,7 @@ public static class ArraysTester {
         //Console.WriteLine(count);
         //Console.WriteLine(idex);
 
-        //going to use GetRange from count - amount to count, add it to the new result list, then remove that same range from the data list, then add the remaining data list into the new result list.
+        //Plan: going to use GetRange from count - amount to amount, add it to the new result list, then remove that same range from the data list, then add the remaining data list into the new result list.
 
         //this is the list of numbers in the range that it needs to move over to the right
         List<int> theRange = new List<int>(data.GetRange(idex, amount));
