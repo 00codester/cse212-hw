@@ -12,15 +12,24 @@ public class CustomerService {
 
         // Test 1
         // Scenario: 
-        // Expected Result: 
+        // Expected Result: 3 , 10
         Console.WriteLine("Test 1");
-
+        var cs = new CustomerService(1);
+        Console.WriteLine(cs);
+        // var other = new CustomerService(-1);
+        // Console.WriteLine(other);
+        //Console.WriteLine(CustomerService(3));
         // Defect(s) Found: 
 
         Console.WriteLine("=================");
 
         // Test 2
         // Scenario: 
+        //var newCust = new Customer().AddNewCustomer();
+        cs.AddNewCustomer();
+        cs.AddNewCustomer();
+        //cs.AddNewCustomer();
+        Console.WriteLine(cs);
         // Expected Result: 
         Console.WriteLine("Test 2");
 
