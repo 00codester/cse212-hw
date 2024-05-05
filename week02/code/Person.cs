@@ -4,7 +4,9 @@ public class Person {
 
     internal Person(string name, int turns) {
         Name = name;
+        //if (turns <= 0)
         Turns = turns;
+        //Turns.ToString();
     }
 
     public override string ToString() {

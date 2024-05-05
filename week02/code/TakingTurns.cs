@@ -16,6 +16,9 @@
         while (players.Length > 0)
             players.GetNextPerson();
         // Defect(s) Found: 
+        // Initial result: Sue Sue Sue Tim Tim Tim Tim Tim Bob Bob, the people are not being dequeued,
+        // they are taking their turns until they are out of turns and then the queue is removing 
+        // that person and moving to the next one it is also working in stack instead of queue.
 
         Console.WriteLine("---------");
 
@@ -38,7 +41,8 @@
         while (players.Length > 0)
             players.GetNextPerson();
 
-        // Defect(s) Found: 
+        // Defect(s) Found: was doing the same result as test 1 running through person's turns completely 
+        // then moving to the next one. After fixing the issue for test 1, this test passed without issues.
 
         Console.WriteLine("---------");
 
@@ -57,6 +61,8 @@
             // Console.WriteLine(players);
         }
         // Defect(s) Found: 
+        // Initial result: Bob Tim Sue Bob Sue Sue No one in the queue. No one in the queue. No one in the queue
+        // No one in the queue. Tim only appears once not forever. This destroys the expected result. (also had same issue as above)
 
         Console.WriteLine("---------");
 
@@ -73,7 +79,9 @@
             players.GetNextPerson();
             // Console.WriteLine(players);
         }
-        // Defect(s) Found: 
+        // Defect(s) Found: First time, forever isn't working so lots of No one in the queue. 
+        // The queue isn't pulling as a queue but as a stack, Tim only appears once.
+        //
 
         Console.WriteLine("---------");
 
@@ -83,6 +91,7 @@
         Console.WriteLine("Test 5");
         players = new TakingTurnsQueue();
         players.GetNextPerson();
-        // Defect(s) Found:
+        // Defect(s) Found: Result: No one in the queue, works as expected.
+        //
     }
 }
