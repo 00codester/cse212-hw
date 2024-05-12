@@ -30,6 +30,13 @@ public class Maze {
     /// </summary>
     public void MoveLeft() {
         // FILL IN CODE
+        var canLeft = _mazeMap[(_currX, _currY)];
+        if(canLeft[0] == true){
+            _currX--;
+            Console.WriteLine("Moved Left.");
+        } else {
+            Console.WriteLine("Can't go that way!(Left)");
+        }
     }
 
     /// <summary>
@@ -38,6 +45,13 @@ public class Maze {
     /// </summary>
     public void MoveRight() {
         // FILL IN CODE
+        var canRight = _mazeMap[(_currX, _currY)];
+        if(canRight[1] == true){
+            _currX++;
+            Console.WriteLine("Moved Right.");
+        } else {
+            Console.WriteLine("Can't go that way!(Right)");
+        }
     }
 
     /// <summary>
@@ -46,6 +60,13 @@ public class Maze {
     /// </summary>
     public void MoveUp() {
         // FILL IN CODE
+        var canUp = _mazeMap[(_currX, _currY)];
+        if(canUp[2] == true){
+            _currY--;
+            Console.WriteLine("Moved Up.");
+        } else {
+            Console.WriteLine("Can't go that way!(Up)");
+        }
     }
 
     /// <summary>
@@ -54,6 +75,13 @@ public class Maze {
     /// </summary>
     public void MoveDown() {
         // FILL IN CODE
+        var canDown = _mazeMap[(_currX, _currY)];
+        if(canDown[3] == true){
+            _currY++;
+            Console.WriteLine("Moved Down.");
+        } else {
+            Console.WriteLine("Can't go that way!(Down)");
+        }
     }
 
     public void ShowStatus() {

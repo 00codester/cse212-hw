@@ -1,4 +1,6 @@
 using System.Text.Json;
+using Microsoft.VisualBasic;
+using Microsoft.Win32.SafeHandles;
 
 public static class SetsAndMapsTester {
     public static void Run() {
@@ -111,6 +113,19 @@ public static class SetsAndMapsTester {
         // To display the pair correctly use something like:
         // Console.WriteLine($"{word} & {pair}");
         // Each pair of words should displayed on its own line.
+        var pairs = new HashSet<string>();
+        foreach ( var word in words){
+            char[] forWord = word.ToCharArray();
+            Array.Reverse(forWord);
+            string backWord = new string(forWord);
+            if (pairs.Contains(backWord)){
+                Console.WriteLine($"{word} & {backWord}");
+            }
+            pairs.Add(word);
+            // if(!pairs.Contains(word)){
+            //     pairs.Add(word);
+            // }
+        }
     }
 
     /// <summary>
@@ -132,6 +147,11 @@ public static class SetsAndMapsTester {
         foreach (var line in File.ReadLines(filename)) {
             var fields = line.Split(",");
             // Todo Problem 2 - ADD YOUR CODE HERE
+            if(!degrees.ContainsKey(fields[3])){
+                degrees[fields[3]] = 1;
+            } else {
+                degrees[fields[3]]++;
+            }
         }
 
         return degrees;
@@ -158,7 +178,50 @@ public static class SetsAndMapsTester {
     /// #############
     private static bool IsAnagram(string word1, string word2) {
         // Todo Problem 3 - ADD YOUR CODE HERE
-        return false;
+        //List<char> firstWord = new List<char>();
+        // foreach(char letter in word1){
+        //     if (letter != " "){
+        //         firstWord.Add(letter);
+        //     }
+        // }
+        var lower1 = word1.ToLower();
+        var lower2 = word2.ToLower();
+        var spaceless1 = lower1.Replace(" ", "");
+        //char[] list1 = spaceless1.ToCharArray();
+        var spaceless2 = lower2.Replace(" ", "");
+        //char[] list2 = spaceless2.ToCharArray();
+        if(spaceless1.Length != spaceless2.Length){
+            return false;
+        }
+
+        List<char> list1 = new List<char>();
+        List<char> list2 = new List<char>();
+        foreach(char letter1 in spaceless1){
+            list1.Add(letter1);
+        }
+        foreach(char letter2 in spaceless2){
+            list2.Add(letter2);
+        }
+        foreach (var letter in list1){
+            if (list2.Contains(letter)){
+                int pos = list2.IndexOf(letter);
+                list2.Remove(list2[pos]);
+            }
+            //Console.WriteLine(letter);
+            // if(spaceless2.Contains(letter)){
+            //     spaceless2.Remove(letter);
+            // } else {
+            //     return false;
+            // }
+
+            
+        }
+        if(list2.Count == 0){
+            return true;
+        } else{
+            return false;
+        }
+        
     }
 
     /// <summary>
