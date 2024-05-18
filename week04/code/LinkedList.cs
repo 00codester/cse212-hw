@@ -71,7 +71,7 @@ public class LinkedList : IEnumerable<int> {
     /// </summary>
     public void RemoveTail() {
         // TODO Problem 2
-        //if list is empty, keep it empty; ok baby
+        //if list is empty, keep it empty;
         if (_head == _tail){
             _head = null;
             _tail = null;
