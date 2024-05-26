@@ -312,7 +312,26 @@ public static class RecursionTester {
 
         // TODO Start Problem 5
         // ADD CODE HERE
+        currPath.Add((x, y));
 
-        // Console.WriteLine(currPath.AsString()); // Use this to print out your path when you find the solution
+        if (maze.IsEnd(x, y)){
+            
+            Console.WriteLine(currPath.AsString()); // Use this to print out your path when you find the solution
+        } 
+        
+        if(maze.IsValidMove(currPath, x + 1, y)){
+            SolveMaze(maze, x + 1, y, currPath);
+        }
+        if(maze.IsValidMove(currPath, x, y + 1)){
+            SolveMaze(maze, x, y + 1, currPath);
+        } 
+        if (maze.IsValidMove(currPath, x - 1, y)){
+            SolveMaze(maze, x - 1, y, currPath);
+        }
+        if (maze.IsValidMove(currPath, x, y - 1)){
+            SolveMaze(maze, x, y - 1, currPath);
+        }
+
+        currPath.RemoveAt(currPath.Count - 1);
     }
 }
